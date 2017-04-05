@@ -56,8 +56,9 @@
 
     <target name="resolve" depends="install-ivy, generate-src" description="retrieve dependencies with ivy">
         <ivy:resolve /> <!-- résoudre les dépendances déclarées dans ivy.xml -->
-        <ivy:cachepath organisation="commons-lang" module="commons-lang" revision="2.1" 
-                       pathid="lib.path.id" inline="true"/> <!-- définir la variable lib.path.id -->
+        <!-- <ivy:cachepath organisation="commons-lang" module="commons-lang" revision="2.1" 
+                       pathid="lib.path.id" inline="true"/> --> <!-- définir la variable lib.path.id -->
+                       <ivy:cachepath pathid="lib.path.id"/>
     </target>
     
     <!-- ================================= 
