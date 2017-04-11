@@ -54,7 +54,7 @@
     		 dest="${ivy.jar.file}" usetimestamp="true"/>
     </target>
 
-    <target name="resolve" depends="install-ivy, generate-src" description="retrieve dependencies with ivy">
+    <target name="resolve" depends="install-ivy" description="retrieve dependencies with ivy">
         <ivy:resolve /> <!-- résoudre les dépendances déclarées dans ivy.xml -->
         <!-- <ivy:cachepath organisation="commons-lang" module="commons-lang" revision="2.1" 
                        pathid="lib.path.id" inline="true"/> --> <!-- définir la variable lib.path.id -->
@@ -121,7 +121,7 @@ Let's go!
             source code to a file. In real life this file would already be
             present on your file system, and this target wouldn't be necessary.
          ================================= -->
-    <target name="generate-src">
+   <!-- <target name="generate-src">
         <mkdir dir="${src.dir}/example" />
         <echo file="${src.dir}/example/Hello.java">
 package example;
@@ -137,7 +137,7 @@ public class Hello {
     }
 }
         </echo>
-    </target>
+    </target> -->
 	
     <!-- ================================= 
           target: clean              
