@@ -44,6 +44,7 @@
 
     <property name="build.dir" value="build" />
     <property name="src.dir" value="src" />
+    <property name="report.dir" value="report" />
     
     
     <target name="download-ivy" unless="skip.download">
@@ -53,6 +54,12 @@
     	<get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
     		 dest="${ivy.jar.file}" usetimestamp="true"/>
     </target>
+
+    <target name="report" depends="go" description="--> generate documentation">
+          <mkdir dir="${report.dir}" />
+          <ivy:report todir="report" />
+        </target>
+ 
 
     <target name="resolve" depends="install-ivy" description="retrieve dependencies with ivy">
         <ivy:resolve /> <!-- résoudre les dépendances déclarées dans ivy.xml -->
@@ -85,6 +92,9 @@
          ================================= -->
     <target name="go" depends="resolve" 
             description="--> resolve dependencies, compile the project">
+
+        <pathconvert property="tmp" refid="lib.path.id"/>
+        <echo>Dans le Classpath : ${tmp}</echo> 
 		<echo message="using ivy to resolve commons-lang 2.1..."/>
         <!-- here comes the magic line: asks ivy to resolve a dependency on 
              commons-lang 2.1 and to build an ant path with it from its cache  -->
